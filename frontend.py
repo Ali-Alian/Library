@@ -1,8 +1,9 @@
 """
-write what ever you want normaly your info 
+chetahran@gmail.com
+Ali Alian 
+
 
 """
-#-*- coding: UTF-8 -*-
 
 from tkinter import *
 import backend
