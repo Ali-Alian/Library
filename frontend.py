@@ -8,6 +8,14 @@ Ali Alian
 from tkinter import *
 import backend
 
+clearing = " "
+def clear():
+	global clearing
+	
+	title_text.set(" ")
+	author_text.set(" ")
+	year_text.set(" ")
+	isbn_text.set(" ")
 
 def get_selected_row(event):	#To select the element in case of farther action on the element like deleting it 
 
@@ -100,7 +108,7 @@ e4.grid(row=1,column=3)
 
 
 #text bux for the output and the scroll bar 
-list1=Listbox(window, height=10, width=35)
+list1=Listbox(window, height=12, width=35)
 list1.grid(row=2 ,column=0, rowspan=10, columnspan=2)
 
 sb1=Scrollbar(window)
@@ -130,9 +138,11 @@ b4.grid(row=5,column=3)
 b5=Button(window, text="Delete", width=12,command=delete_command)
 b5.grid(row=6,column=3)
 
-b6=Button(window, text="Close", width=12,command=window.destroy)
-b6.grid(row=7,column=3)
+clear=Button(window, text="Clear", width=12,command=clear)
+clear.grid(row=7,column=3)
 
+b6=Button(window, text="Close", width=12,command=window.destroy)
+b6.grid(row=8,column=3)
 
 
 window.mainloop()
