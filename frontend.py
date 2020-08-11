@@ -6,7 +6,9 @@ Ali Alian
 """
 
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database('library.db')
 
 clearing = " "
 def clear():
@@ -40,28 +42,28 @@ def get_selected_row(event):	#To select the element in case of farther action on
 
 def view_command():
 	list1.delete(0,END)
-	for row in backend.view():
+	for row in database.view():
 		list1.insert(END,row)
 
 
 def search_command():
 	list1.delete(0,END)
-	for row in backend.serching(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()):
+	for row in database.serching(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()):
 		list1.insert(END,row)
 
 def add_command():
 
-	backend.insert(title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
+	database.insert(title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
 	list1.delete(0,END)
 	list1.insert(END,(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()))
 
 
-def delete_command():
-	backend.delete(selected_tuple[0])
+def delete_command(): # select the element and then  deleted 
+	database.delete(selected_tuple[0])
 
 
-def update_command():
-	backend.update(selected_tuple[0],title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
+def update_command(): #select the element and then update it 
+	database.update(selected_tuple[0],title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
 
 
 
