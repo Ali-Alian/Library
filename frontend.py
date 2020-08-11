@@ -4,20 +4,9 @@ Ali Alian
 
 
 """
-
 from tkinter import *
-from backend import Database
+import backend
 
-database = Database('library.db')
-
-clearing = " "
-def clear():
-	global clearing
-	
-	title_text.set(" ")
-	author_text.set(" ")
-	year_text.set(" ")
-	isbn_text.set(" ")
 
 def get_selected_row(event):	#To select the element in case of farther action on the element like deleting it 
 
@@ -42,28 +31,28 @@ def get_selected_row(event):	#To select the element in case of farther action on
 
 def view_command():
 	list1.delete(0,END)
-	for row in database.view():
+	for row in backend.view():
 		list1.insert(END,row)
 
 
 def search_command():
 	list1.delete(0,END)
-	for row in database.serching(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()):
+	for row in backend.serching(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()):
 		list1.insert(END,row)
 
 def add_command():
 
-	database.insert(title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
+	backend.insert(title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
 	list1.delete(0,END)
 	list1.insert(END,(title_text.get(), author_text.get(),year_text.get(),isbn_text.get()))
 
 
-def delete_command(): # select the element and then  deleted 
-	database.delete(selected_tuple[0])
+def delete_command():
+	backend.delete(selected_tuple[0])
 
 
-def update_command(): #select the element and then update it 
-	database.update(selected_tuple[0],title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
+def update_command():
+	backend.update(selected_tuple[0],title_text.get(), author_text.get(),year_text.get(),isbn_text.get())
 
 
 
@@ -110,7 +99,7 @@ e4.grid(row=1,column=3)
 
 
 #text bux for the output and the scroll bar 
-list1=Listbox(window, height=12, width=35)
+list1=Listbox(window, height=10, width=35)
 list1.grid(row=2 ,column=0, rowspan=10, columnspan=2)
 
 sb1=Scrollbar(window)
@@ -140,11 +129,9 @@ b4.grid(row=5,column=3)
 b5=Button(window, text="Delete", width=12,command=delete_command)
 b5.grid(row=6,column=3)
 
-clear=Button(window, text="Clear", width=12,command=clear)
-clear.grid(row=7,column=3)
-
 b6=Button(window, text="Close", width=12,command=window.destroy)
-b6.grid(row=8,column=3)
+b6.grid(row=7,column=3)
 
 
-window.mainloop()
+
+window.mainloop() 
